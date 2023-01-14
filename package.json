@@ -1,0 +1,38 @@
+{
+  "main": "index.js",
+  "name": "autodriveapi",
+  "description": "- express\r - helmet\r - mongoose\r - yup\r - custom error handler",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaxPopsuy/AutoDriveApi.git"
+  },
+  "author": "MaxPopsui",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaxPopsuy/AutoDriveApi/issues"
+  },
+  "homepage": "https://github.com/MaxPopsuy/AutoDriveApi#readme",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "helmet": "^5.1.1",
+    "jsonwebtoken": "^9.0.0",
+    "moment": "^2.29.4",
+    "mongoose": "^6.4.7",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.1",
+    "swagger-ui-express": "^4.6.0",
+    "volleyball": "^1.5.1",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}

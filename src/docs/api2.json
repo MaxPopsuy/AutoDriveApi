@@ -1,0 +1,600 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "A simple AutoDrive API that supports authentication, work with trips",
+    "version": "1.0.0",
+    "title": "AutoDrive Api",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "https://autodriveapi.onrender.com",
+  "servers": [
+    {
+      "url": "autodriveapi.onrender.com"
+    }
+  ],
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "Auth"
+    },
+    {
+      "name": "Trips"
+    },
+    {
+      "name": "Users"
+    },
+    {
+      "name": "Coming soon"
+    }
+  ],
+  "schemes": ["https"],
+  "paths": {
+    "/trips": {
+      "get": {
+        "tags": ["Trips"],
+        "description": "Get all trips",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Trip"
+                  }
+                }
+              }
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "id": {
+                    "type": "string",
+                    "format": "uuid",
+                    "example": "123e4567-e89b-12d3-a456-426614174000"
+                  },
+                  "createdAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2013-06-23T00:00:00.000Z"
+                  },
+                  "updatedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2013-06-23T00:00:00.000Z"
+                  },
+                  "startPoint": {
+                    "type": "string",
+                    "example": "Bilhorod"
+                  },
+                  "endPoint": {
+                    "type": "string",
+                    "example": "Gulyaypole"
+                  },
+                  "date": {
+                    "type": "date or string",
+                    "format": "date-time",
+                    "example": "2013-06-23T00:00:00.000Z"
+                  },
+                  "time": {
+                    "type": "date or string",
+                    "format": "date-time",
+                    "example": "2013-06-23T00:00:00.000Z"
+                  },
+                  "driver": {
+                    "$ref": "#/components/schemas/User"
+                  },
+                  "driverRating": {
+                    "type": "number",
+                    "example": 5
+                  },
+                  "passengerRating": {
+                    "type": "number",
+                    "example": 3
+                  },
+                  "car": {
+                    "type": "string",
+                    "example": "Sd.Kfz.234/2 Puma"
+                  }
+                },
+                {
+                  "id": {
+                    "type": "string",
+                    "format": "uuid",
+                    "example": "123e4567-e89b-12d3-a456-426614174000"
+                  },
+                  "createdAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2013-06-23T00:00:00.000Z"
+                  },
+                  "updatedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2013-06-23T00:00:00.000Z"
+                  },
+                  "startPoint": {
+                    "type": "string",
+                    "example": "Odesa"
+                  },
+                  "endPoint": {
+                    "type": "string",
+                    "example": "Kyiv"
+                  },
+                  "date": {
+                    "type": "date or string",
+                    "format": "date-time",
+                    "example": "2013-06-23T00:00:00.000Z"
+                  },
+                  "time": {
+                    "type": "date or string",
+                    "format": "date-time",
+                    "example": "2013-06-23T00:00:00.000Z"
+                  },
+                  "driver": {
+                    "$ref": "#/components/schemas/User"
+                  },
+                  "driverRating": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "passengerRating": {
+                    "type": "number",
+                    "example": 5
+                  },
+                  "car": {
+                    "type": "string",
+                    "example": "Panzer Kampfwagen VIII Maus"
+                  }
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "INTERNAL SERVER ERROR"
+          }
+        }
+      }
+    },
+    "/trips/find": {
+      "get": {
+        "tags": ["Trips"],
+        "description": "Find trips by data and filter the results",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["earliest", "latest"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Trip"
+                  }
+                }
+              }
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "id": {
+                    "type": "string",
+                    "format": "uuid",
+                    "example": "123e4567-e89b-12d3-a456-426614174000"
+                  },
+                  "createdAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2013-06-23T00:00:00.000Z"
+                  },
+                  "updatedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2013-06-23T00:00:00.000Z"
+                  },
+                  "startPoint": {
+                    "type": "string",
+                    "example": "Bilhorod"
+                  },
+                  "endPoint": {
+                    "type": "string",
+                    "example": "Gulyaypole"
+                  },
+                  "date": {
+                    "type": "date or string",
+                    "format": "date-time",
+                    "example": "2013-06-23T00:00:00.000Z"
+                  },
+                  "time": {
+                    "type": "date or string",
+                    "format": "date-time",
+                    "example": "2013-06-23T00:00:00.000Z"
+                  },
+                  "driver": {
+                    "$ref": "#/components/schemas/User"
+                  },
+                  "driverRating": {
+                    "type": "number",
+                    "example": 5
+                  },
+                  "passengerRating": {
+                    "type": "number",
+                    "example": 3
+                  },
+                  "car": {
+                    "type": "string",
+                    "example": "Sd.Kfz.234/2 Puma"
+                  }
+                },
+                {
+                  "id": {
+                    "type": "string",
+                    "format": "uuid",
+                    "example": "123e4567-e89b-12d3-a456-426614174000"
+                  },
+                  "createdAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2013-06-23T00:00:00.000Z"
+                  },
+                  "updatedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2013-06-23T00:00:00.000Z"
+                  },
+                  "startPoint": {
+                    "type": "string",
+                    "example": "Odesa"
+                  },
+                  "endPoint": {
+                    "type": "string",
+                    "example": "Kyiv"
+                  },
+                  "date": {
+                    "type": "date or string",
+                    "format": "date-time",
+                    "example": "2013-06-23T00:00:00.000Z"
+                  },
+                  "time": {
+                    "type": "date or string",
+                    "format": "date-time",
+                    "example": "2013-06-23T00:00:00.000Z"
+                  },
+                  "driver": {
+                    "$ref": "#/components/schemas/User"
+                  },
+                  "driverRating": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "passengerRating": {
+                    "type": "number",
+                    "example": 5
+                  },
+                  "car": {
+                    "type": "string",
+                    "example": "Panzer Kampfwagen VIII Maus"
+                  }
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "INTERNAL SERVER ERROR"
+          }
+        }
+      }
+    },
+    "/trips/create": {
+      "post": {
+        "tags": ["Trips"],
+        "description": "Create trip by data",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "$ref": "#/components/schemas/Trip"
+                  }
+                }
+              }
+            },
+            "examples": {
+              "application/json": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid",
+                  "example": "123e4567-e89b-12d3-a456-426614174000"
+                },
+                "createdAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2013-06-23T00:00:00.000Z"
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2013-06-23T00:00:00.000Z"
+                },
+                "startPoint": {
+                  "type": "string",
+                  "example": "Bilhorod"
+                },
+                "endPoint": {
+                  "type": "string",
+                  "example": "Gulyaypole"
+                },
+                "date": {
+                  "type": "date or string",
+                  "format": "date-time",
+                  "example": "2013-06-23T00:00:00.000Z"
+                },
+                "time": {
+                  "type": "date or string",
+                  "format": "date-time",
+                  "example": "2013-06-23T00:00:00.000Z"
+                },
+                "driver": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "driverRating": {
+                  "type": "number",
+                  "example": 5
+                },
+                "passengerRating": {
+                  "type": "number",
+                  "example": 3
+                },
+                "car": {
+                  "type": "string",
+                  "example": "Sd.Kfz.234/2 Puma"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INTERNAL SERVER ERROR"
+          }
+        }
+      }
+    },
+    "/trips/driver/{id}": {
+      "patch": {
+        "tags": ["Trips"],
+        "description": "Set driver rating using tripId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/trips/passenger/{id}": {
+      "patch": {
+        "tags": ["Trips"],
+        "description": "Set passenger rating using tripId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/auth/profile": {
+      "get": {
+        "tags": ["Auth"],
+        "description": "get current user profile",
+        "parameters": [],
+        "security": [
+          {
+            "jwt_auth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user": {
+                      "$ref": "#/components/schemas/User",
+                      "example": "user data"
+                    },
+                    "token": {
+                      "type": "string",
+                      "example": "tokenstring"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "tags": ["Auth"],
+        "description": "Register a new user",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                },
+                "role": {
+                  "example": "driver/passenger/admin"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "INTERNAL SERVER ERROR"
+          }
+          
+          
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": ["Auth"],
+        "description": "Login a new user",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2013-06-23T00:00:00.000Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2013-06-23T00:00:00.000Z"
+          },
+          "username": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          }
+        }
+      },
+      "Trip": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2013-06-23T00:00:00.000Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2013-06-23T00:00:00.000Z"
+          },
+          "startPoint": {
+            "type": "string"
+          },
+          "endPoint": {
+            "type": "string"
+          },
+          "date": {
+            "type": "date or string",
+            "format": "date-time",
+            "example": "2013-06-23T00:00:00.000Z"
+          },
+          "time": {
+            "type": "date or string",
+            "format": "date-time",
+            "example": "2013-06-23T00:00:00.000Z"
+          },
+          "driver": {
+            "$ref": "#/components/schemas/User"
+          },
+          "driverRating": {
+            "type": "number"
+          },
+          "passengerRating": {
+            "type": "number"
+          },
+          "car": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "jwt_auth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "jwt"
+      }
+    }
+  }
+}

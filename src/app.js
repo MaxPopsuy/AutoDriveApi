@@ -3,7 +3,7 @@ const volleyball = require("volleyball");
 const helmet = require("helmet");
 const cors = require("cors");
 const swagger = require('swagger-ui-express');
-const swaggerDocs = require('./docs/api.json');
+const swaggerDocs = require('./docs/api2.json');
 require("dotenv").config();
 
 const apiRouter = require("./routes/api");
@@ -14,9 +14,16 @@ const app = express();
 require("./config/db")
 require('./config/passport');
 
+
 app.use(express.json());
 app.use(volleyball);
-app.use(helmet());
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'"],
+    connectSrc: ["'self'", 'http://https//autodriveapi.onrender.com']
+  }
+}));
+// app.use(helmet());
 app.use(cors({ origin: "*" }));
 
 app.get("/", (req, res) => {

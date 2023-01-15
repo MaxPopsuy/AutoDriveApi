@@ -15,7 +15,8 @@
   "homepage": "https://github.com/MaxPopsuy/AutoDriveApi#readme",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start:dev": "nodemon index.js",
+    "swagger-autogen": "node ./src/config/swagger.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
@@ -28,6 +29,7 @@
     "mongoose": "^6.4.7",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
+    "swagger-autogen": "^2.22.0",
     "swagger-ui-express": "^4.6.0",
     "volleyball": "^1.5.1",
     "yup": "^0.32.11"

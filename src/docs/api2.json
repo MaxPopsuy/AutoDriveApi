@@ -161,6 +161,83 @@
         }
       }
     },
+    "/trips/trip/{tripId}": {
+      "get": {
+        "tags": ["Trips"],
+        "description": "Get trip by id",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "$ref": "#/components/schemas/Trip"
+                  }
+                }
+              }
+            },
+            "examples": {
+              "application/json": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid",
+                  "example": "123e4567-e89b-12d3-a456-426614174000"
+                },
+                "createdAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2013-06-23T00:00:00.000Z"
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2013-06-23T00:00:00.000Z"
+                },
+                "startPoint": {
+                  "type": "string",
+                  "example": "Bilhorod"
+                },
+                "endPoint": {
+                  "type": "string",
+                  "example": "Gulyaypole"
+                },
+                "date": {
+                  "type": "date or string",
+                  "format": "date-time",
+                  "example": "2013-06-23T00:00:00.000Z"
+                },
+                "time": {
+                  "type": "date or string",
+                  "format": "date-time",
+                  "example": "2013-06-23T00:00:00.000Z"
+                },
+                "driver": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "driverRating": {
+                  "type": "number",
+                  "example": 5
+                },
+                "passengerRating": {
+                  "type": "number",
+                  "example": 3
+                },
+                "car": {
+                  "type": "string",
+                  "example": "tesla"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INTERNAL SERVER ERROR"
+          }
+        }
+      }
+    },
     "/trips/find": {
       "get": {
         "tags": ["Trips"],
@@ -475,8 +552,6 @@
           "400": {
             "description": "INTERNAL SERVER ERROR"
           }
-          
-          
         }
       }
     },

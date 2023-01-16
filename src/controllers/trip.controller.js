@@ -15,6 +15,24 @@ exports.getAll = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.getById = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+
+    const trip = await Trip.findById(id);
+
+    if (!trip) {
+      res.status(404).json({message: "Trip not found"});
+      return;
+    }
+
+    res.status(200).json(trip);
+  } catch (error) {
+    next(error);
+  }
+};
+
 exports.find = async (req, res, next) => {
   try {
     const data = req.body || {};

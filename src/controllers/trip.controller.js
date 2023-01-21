@@ -23,7 +23,7 @@ exports.getById = async (req, res, next) => {
     const trip = await Trip.findById(id);
 
     if (!trip) {
-      res.status(404).json({message: "Trip not found"});
+      res.status(404).json({ message: "Trip not found" });
       return;
     }
 
@@ -61,7 +61,9 @@ exports.create = async (req, res, next) => {
     tripBody.date = moment.format(tripBody.date, "YYYY-MM-DD", true);
 
     const trip = await Trip.create(tripBody);
-
+    trip.time = moment.format(trip.time, "HH:mm");
+    trip.date = moment.format(trip.date, "YYYY-MM-DD");
+    
     res.status(200).json({ trip, message: "Successfully created a trip!" });
   } catch (error) {
     next(error);

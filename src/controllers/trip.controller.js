@@ -7,7 +7,7 @@ exports.getAll = async (req, res, next) => {
     const trips = await Trip.find();
     trips.forEach((trip) => {
       trip.time = moment.format(trip.time, "HH:mm");
-      trip.date = moment.format(trip.date, "YYYY-MM-DD-MM-DD");
+      trip.date = moment.format(trip.date, "YYYY-MM-DD");
     });
 
     res.status(200).send(trips);
@@ -58,7 +58,7 @@ exports.create = async (req, res, next) => {
     const tripBody = req.body;
 
     tripBody.time = moment.format(tripBody.time, "HH:mm", true);
-    tripBody.date = moment.format(tripBody.time, "YYYY-MM-DD", true);
+    tripBody.date = moment.format(tripBody.date, "YYYY-MM-DD", true);
 
     const trip = await Trip.create(tripBody);
 

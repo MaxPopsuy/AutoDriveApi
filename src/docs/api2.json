@@ -239,7 +239,7 @@
       }
     },
     "/trips/find": {
-      "get": {
+      "post": {
         "tags": ["Trips"],
         "description": "Find trips by data and filter the results",
         "parameters": [

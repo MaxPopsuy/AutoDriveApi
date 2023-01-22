@@ -36,6 +36,17 @@ exports.getById = async (req, res, next) => {
 exports.find = async (req, res, next) => {
   try {
     const data = req.body || {};
+    if (data && data.time) {
+      data.time = moment.format(data.time, "HH:mm", true);
+    }
+    if (data && data.date) {
+      data.date = moment.format(data.date, "YYYY-MM-DD", true);
+    }
+    if (data && data.seats) {
+      delete data.seats;
+      console.log(data.seats);
+    }
+
     const filter = req.query.filter;
 
     switch (filter) {
@@ -63,7 +74,7 @@ exports.create = async (req, res, next) => {
     const trip = await Trip.create(tripBody);
     trip.time = moment.format(trip.time, "HH:mm");
     trip.date = moment.format(trip.date, "YYYY-MM-DD");
-    
+
     res.status(200).json({ trip, message: "Successfully created a trip!" });
   } catch (error) {
     next(error);

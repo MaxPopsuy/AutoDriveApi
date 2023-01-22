@@ -1,4 +1,4 @@
-const moment = require('./moment');
+const moment = require("./moment");
 
 exports.getTripsByFilter = async (Trip, res, data, filter) => {
   const trips = await Trip.find(data).sort(filter);
@@ -14,4 +14,4 @@ exports.getTripsByFilter = async (Trip, res, data, filter) => {
   });
 
   res.status(200).send(trips);
-}
+};

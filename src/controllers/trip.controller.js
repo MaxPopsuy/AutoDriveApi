@@ -44,8 +44,9 @@ exports.find = async (req, res, next) => {
     }
     if (data && data.seats) {
       delete data.seats;
-      console.log(data.seats);
     }
+    delete data?.date;
+    delete data?.time;
 
     const filter = req.query.filter;
 

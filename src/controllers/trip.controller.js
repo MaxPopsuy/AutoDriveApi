@@ -27,13 +27,11 @@ exports.getById = async (req, res, next) => {
       return;
     }
 
-    if (trip.time) {
-      trip.time = moment.format(trip.time, "HH:mm", true);
-    }
-    if (trip.date) {
-      trip.date = moment.format(trip.date, "YYYY-MM-DD", true);
-    }
+    trip.time = moment.format(trip.time, "HH:mm", );
 
+    trip.date = moment.format(trip.date, "YYYY-MM-DD", );
+
+    console.log(trip);
     res.status(200).json(trip);
   } catch (error) {
     next(error);
